@@ -62,6 +62,7 @@ If it doesn't:
    Developer → **Configure Third-Party Inference…**: provider `gateway`,
    endpoint `http://127.0.0.1:8788`, API key `via-local-gateway`, then
    Apply Changes → Save & Restart. Do not sign in to claude.ai.
+   (Official walkthrough: https://claude.com/docs/third-party/claude-desktop/in-app-configuration)
 
 ## Troubleshooting
 
@@ -71,7 +72,7 @@ If it doesn't:
 | 401/403 in gateway log | bad key | update `~/.config/claude-glm-stack/key`, kickstart the agent |
 | "GLM-5.3" describes images | Desktop bypasses the gateway (base URL points straight at z.ai) | set `inferenceGatewayBaseUrl` to `http://127.0.0.1:8788` |
 | Model picker empty | `inferenceModels` lost | re-run setup; check config file was not overwritten |
-| App updated, config schema changed | upstream rename | compare with `docs/findings.md` §4; keys were decoded from app.asar and are version-sensitive |
+| App updated, config schema changed | upstream rename | check the official key reference: https://claude.com/docs/third-party/claude-desktop/configuration — then update configs + this repo |
 
 ## Optional hardening (offer, don't force)
 
@@ -79,6 +80,15 @@ If it doesn't:
   add `"CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK": "1"` to `~/.claude/settings.json` `env`.
 * WebFetch in Code sessions preflights each domain against `api.anthropic.com`;
   `"skipWebFetchPreflight": true` in the Desktop managed config removes that.
+
+## Reference
+
+* **`docs/links.md`** — every official doc page (Anthropic 3P + Z.AI) with
+  one-line annotations, local-path cheat sheet, community repos. Start there
+  when you need an authoritative answer.
+* `docs/findings.md` — empirical research this repo is built on (what the app
+  *actually* does, including things the docs don't say).
+* Docs index for agents: https://claude.com/docs/llms.txt
 
 ## Uninstall
 

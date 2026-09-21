@@ -77,7 +77,9 @@ Configure Third-Party Inference… → provider `gateway`, endpoint
 
 ## Проверенные факты (чего нет в других гайдах)
 
-Кратко — подробно в [`docs/findings.md`](docs/findings.md):
+Кратко — подробно в [`docs/findings.md`](docs/findings.md);
+все официальные доки (Anthropic 3P + Z.AI) с аннотациями — в
+[`docs/links.md`](docs/links.md):
 
 - декодированный из `app.asar` валидатор имён (белый/чёрный списки)
 - vision-доказательство: все `claude-*` алиасы у Z.AI → flash

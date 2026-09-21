@@ -82,7 +82,9 @@ Do **not** sign in to claude.ai. Copy the tier entries from
 
 ## Verified findings (the part nobody else tested)
 
-Short version — long version in [`docs/findings.md`](docs/findings.md):
+Short version — long version in [`docs/findings.md`](docs/findings.md);
+all official doc pages (Anthropic 3P + Z.AI) annotated in
+[`docs/links.md`](docs/links.md):
 
 * name validator whitelist/blacklist decoded from `app.asar`
 * vision-probe proof that all `claude-*` aliases land on flash
