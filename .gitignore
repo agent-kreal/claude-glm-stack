@@ -1,0 +1,5 @@
+# secrets must never land here
+key
+*.key
+.env
+config.json.bak

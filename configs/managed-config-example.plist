@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>inferenceProvider</key><string>gateway</string>
+	<key>inferenceGatewayBaseUrl</key><string>http://127.0.0.1:8788</string>
+	<key>inferenceGatewayApiKey</key><string>via-local-gateway</string>
+	<key>inferenceGatewayAuthScheme</key><string>bearer</string>
+	<key>inferenceCredentialKind</key><string>static</string>
+	<key>inferenceModels</key>
+	<array>
+		<dict>
+			<key>name</key><string>claude-opus-5</string>
+			<key>labelOverride</key><string>GLM-5.3</string>
+			<key>supports1m</key><true/>
+			<key>anthropicFamilyTier</key><string>opus</string>
+			<key>isFamilyDefault</key><true/>
+			<key>maxEffort</key><string>max</string>
+		</dict>
+		<dict>
+			<key>name</key><string>claude-sonnet-4-5</string>
+			<key>labelOverride</key><string>GLM-5.3 Flash</string>
+			<key>anthropicFamilyTier</key><string>sonnet</string>
+			<key>isFamilyDefault</key><true/>
+		</dict>
+	</array>
+</dict>
+</plist>

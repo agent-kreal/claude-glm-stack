@@ -1,0 +1,27 @@
+{
+  "inferenceProvider": "gateway",
+  "inferenceGatewayBaseUrl": "http://127.0.0.1:8788",
+  "inferenceGatewayApiKey": "via-local-gateway",
+  "inferenceGatewayAuthScheme": "bearer",
+  "inferenceCredentialKind": "static",
+  "modelDiscoveryEnabled": false,
+  "inferenceModels": [
+    {
+      "name": "claude-opus-5",
+      "labelOverride": "GLM-5.3",
+      "supports1m": true,
+      "prefer1m": true,
+      "anthropicFamilyTier": "opus",
+      "isFamilyDefault": true,
+      "maxEffort": "max"
+    },
+    {
+      "name": "claude-sonnet-4-5",
+      "labelOverride": "GLM-5.3 Flash",
+      "anthropicFamilyTier": "sonnet",
+      "isFamilyDefault": true
+    }
+  ],
+  "defaultModelEffort": "max",
+  "alwaysStartWithDefaultModel": true
+}
