@@ -1,0 +1,7 @@
+{
+  "name": "zai-quota-band",
+  "version": "0.1.0",
+  "description": "Z.AI GLM Coding Plan usage band: 5h window with reset countdown, day/week/month tokens, MCP quota, peak x1/x3 badge",
+  "author": { "name": "Kirill Spirin" },
+  "types": "./types/index.d.ts"
+}
