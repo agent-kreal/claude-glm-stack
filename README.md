@@ -18,6 +18,17 @@ local rewriting gateway  127.0.0.1:8788  (launchd, auto-start)
 https://api.z.ai/api/anthropic  (Anthropic Messages API, GLM Coding Plan key)
 ```
 
+## What's inside
+
+| Path | What it is |
+|---|---|
+| `gateway.py` | local rewriting proxy — the Desktop app's 3P endpoint (tier map above) |
+| `scripts/setup-macos.sh` | installs/uninstalls the gateway as a launchd service + app config |
+| `scripts/selftest.py` | vision probe: proves which GLM model each tier really hits |
+| `scripts/zai-quota.py` | CLI for your GLM Coding Plan quotas: 5h window, day/week/month tokens, MCP pool |
+| `mod/zai-quota-band` | Claude Code mod: draws those quotas as a band above the prompt |
+| `configs/`, `docs/` | config examples; verified findings and annotated doc links |
+
 ## Why this exists (the two walls)
 
 1. **Claude Desktop refuses non-Claude model names.** In third-party (3P)
@@ -79,6 +90,37 @@ Do **not** sign in to claude.ai. Copy the tier entries from
 * Chat tab web search works natively (z.ai implements the server-side
   `web_search`; shares the plan's 1000 searches/month pool)
 * All data local (3P mode keeps chats on-device; no claude.ai account)
+* Usage band above the Code-tab prompt — see the section below
+
+## Usage band in the Code tab (`zai-quota-band`)
+
+A Claude Code mod that draws your GLM Coding Plan usage above the prompt:
+
+```
+x3 · 5h:12% [09:00-14:00][↻2h05m] · D:1.2m · W:18.4m · M:100.5m · MCP 4/1000
+```
+
+* `x1`/`x3` — off-peak/peak quota multiplier (Z.AI peak: Mon–Fri 09:00–13:00 MSK)
+* `5h:%` — the rolling 5-hour window: usage, bounds `[start-end]`, time to reset `↻`
+* `D/W/M` — tokens for today / last 7 days / last 30 days (`k`/`m`/`b`)
+* `MCP n/1000` — monthly pool of web-search / web-reader / zread calls
+
+Data comes from Z.AI's monitor API (`api.z.ai/api/monitor/usage/...`) via
+`scripts/zai-quota.py`: stdlib-only, no web login, the key chain mirrors
+`gateway.py` (`$ZAI_API_KEY` → the `env` block of `~/.claude/settings.json` →
+`~/.config/claude-glm-stack/key`), 5-minute cache in `~/.cache/zai-quota.json`.
+The API is undocumented (reverse of the z.ai web console) and may change.
+
+Enable it in every session — add to the `env` block of `~/.claude/settings.json`:
+
+```json
+"CLAUDE_CODE_PLUGIN_DIRS": "<path-to-this-repo>/mod/zai-quota-band"
+```
+
+(or for one run: `claude --plugin-dir <path-to-this-repo>/mod/zai-quota-band`).
+The mod finds the script through `$.plugin.root`, so any clone path works.
+It wraps the band chain via `next()` — other band mods (a CTX meter, say)
+keep drawing beneath it instead of being suppressed.
 
 ## Verified findings (the part nobody else tested)
 
