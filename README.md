@@ -97,7 +97,7 @@ Do **not** sign in to claude.ai. Copy the tier entries from
 A Claude Code mod that draws your GLM Coding Plan usage above the prompt:
 
 ```
-<img width="1013" height="150" alt="image" src="https://github.com/user-attachments/assets/040bf4ab-30ae-4b40-83fe-1656ad1f5fd8" />
+x3 · 5h:12% [09:00-14:00][↻2h05m] · D:1.2m · W:18.4m · M:100.5m · MCP 4/1000
 ```
 
 * `x1`/`x3` — off-peak/peak quota multiplier (Z.AI peak: Mon–Fri 09:00–13:00 MSK)
